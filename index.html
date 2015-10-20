@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Hasua</title>
+
+    <link href="style.css" rel="stylesheet">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script>
+	var empty = true;
+	var textId = 0;
+	
+	function b64eurl(text) {
+		return btoa(text).replace('+', '-').replace('/', '_');
+	}
+	
+	function b64durl(text) {
+		return atob(text.replace('-', '+').replace('_', '/'));
+	}
+	
+	function okPressed() {
+		$('#btnok').attr('disabled', 'disabled');
+		$('#p_input').attr('disabled', 'disabled');
+				
+		var inpfield = $('#p_input');
+		var encoded_p = b64eurl(inpfield.val());
+		inpfield.val("");
+		
+		$.ajax({ 
+			type: 'GET', 
+			url: 'http://cookiezcreations.ovh/p.php',
+			data: { 'm': 'p', 'i': textId, 'love': encoded_p },
+			dataType: 'json',
+			success: function (data) {
+				var parsed = JSON.parse(data);
+				
+			},
+			error: function(j,t,e) {
+				alert(j.responseText);
+			}
+		});
+	}
+	
+	$( window ).ready(function() {
+		$('#logingroup *,#text').removeClass('hidden').hide();
+		
+		$.ajax({ 
+			type: 'GET', 
+			url: 'http://cookiezcreations.ovh/p.php',
+			data: { 'm': 'text' },
+			dataType: 'json',
+			success: function (data) {
+				var parsed = JSON.parse(data);
+				textId = parsed.id;
+				$('#text').html('"' + parsed.text + '"');
+				$('#logingroup *').fadeIn(1000);
+				$('#text').delay(500).fadeIn(2000);
+			},
+			error: function(j,t,e) {
+				alert(j.responseText);
+			}
+		});
+		
+		$("#btnok").click(function() {
+			if(!empty) {
+				okPressed();
+			}
+		});
+		
+		$('input').keyup(function(e) {
+			if (e.which == 13) {
+				return true;
+			}
+			$('input').each(function() {
+				if ($(this).val() == '') {
+					empty = true;
+				}
+				else {
+					empty = false;
+				}
+			});
+
+			if (empty) {
+				$('#btnok').attr('disabled', 'disabled');
+			} else {
+				$('#btnok').removeAttr('disabled');
+			}
+		});
+		
+		$('input').keypress(function (e) {
+			if (e.which == 13) {
+				$('#btnok').click();
+				return false;
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="logincontainer">
+		<div id="logingroup" class="form-group">
+			<!-- <label for="p_input" id="passlabel">Hasuo:</label> -->
+			<input type="password" autofocus="autofocus" class="form-control active hidden" id="p_input">
+			<button type="button" class="btn center-block hidden" id="btnok" required="true" disabled="disabled">OK</button>
+		</div>
+	</div>
+	<h4 id="text" class="hidden"></h4>
+</body>
+</html>
