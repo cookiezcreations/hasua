@@ -82,6 +82,7 @@ $(window).ready(function() {
 
 	$('#tabela_hasua').on('editable-save.bs.table', function(e, colName, row, oldVal) {
 		var editedVal = '';
+		var rowek;
 		if(colName === "login") {
 			editedVal = row.login;
 		}
@@ -107,6 +108,7 @@ $(window).ready(function() {
 			dataType: 'json',
 			success: function(data) {
 				toastr[data.type](data.text, data.title);
+				token = data.token;
 			},
 			error: function(j, t, e) {
 				toastr["error"](j.responseText, "Błąd");
@@ -181,4 +183,8 @@ $(window).ready(function() {
 			return false;
 		}
 	});
+	
+	// $('#btn_add').click(function() {
+		// toastr["info"]("I gunwo.", "Alleluja!");
+	// });
 });
