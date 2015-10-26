@@ -5,154 +5,26 @@
 
     <title>Hasua</title>
 
-    <link href="style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
 	
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
 	
-	<script>
-	var empty = true;
-	var textId = 0;
-
-	function b64eurl(text) {
-	    return btoa(text).replace('+', '-').replace('/', '_');
-	}
-
-	function b64durl(text) {
-	    return atob(text.replace('-', '+').replace('_', '/'));
-	}
-
-	function okPressed() {
-	    $('#btnok,#p_input').attr('disabled', 'disabled');
-
-	    var inpfield = $('#p_input');
-	    var encoded_p = b64eurl(unescape(encodeURIComponent(inpfield.val())));
-	    inpfield.val("");
-
-	    $.ajax({
-	        type: 'GET',
-	        url: 'http://cookiezcreations.ovh/p.php',
-	        data: {
-	            'm': 'p',
-	            'i': textId,
-	            'love': encoded_p
-	        },
-	        dataType: 'json',
-	        success: function(data) {
-	            if (data.type != 'success') {
-	                toastr[data.type]("", data.text);
-	                $('#btnok,#p_input').removeAttr('disabled');
-	                return;
-	            }
-
-	            $('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
-
-	            //$('#text,#logingroup *').fadeOut(300, function() {
-	            $("#newbackground,.tablecontainer").fadeIn(300);
-	            //});
-
-	        },
-	        error: function(j, t, e) {
-	            toastr["error"](j.responseText, "Błąd");
-	        }
-	    });
-	}
-
-	$(window).ready(function() {
-	    $('#logingroup *,#text,.tablecontainer,#newbackground').removeClass('hidden').hide();
-
-	    $('#tabela_hasua').bootstrapTable({
-	        columns: [{
-	            field: 'login',
-	            title: 'Login'
-	        }, {
-	            field: 'password',
-	            title: 'Hasło'
-	        }, {
-	            field: 'editdate',
-	            title: 'Data edycji'
-	        }, {
-	            field: 'createdate',
-	            title: 'Data dodania'
-	        }],
-	        data: [{
-	            login: 'xd'
-	        }]
-	    });
-
-
-	    toastr.options = {
-	        "closeButton": false,
-	        "debug": false,
-	        "newestOnTop": false,
-	        "progressBar": false,
-	        "positionClass": "toast-bottom-left",
-	        "preventDuplicates": false,
-	        "onclick": null,
-	        "showDuration": "300",
-	        "hideDuration": "1000",
-	        "timeOut": "5000",
-	        "extendedTimeOut": "1000",
-	        "showEasing": "swing",
-	        "hideEasing": "linear",
-	        "showMethod": "fadeIn",
-	        "hideMethod": "fadeOut"
-	    }
-
-	    $.ajax({
-	        type: 'GET',
-	        url: 'http://cookiezcreations.ovh/p.php',
-	        data: {
-	            'm': 'text'
-	        },
-	        dataType: 'json',
-	        success: function(data) {
-	            textId = data.id;
-	            $('#text').html('"' + data.text + '"');
-	            $('#logingroup *').fadeIn(1000);
-	            $('#text').delay(500).fadeIn(2000);
-	        },
-	        error: function(j, t, e) {
-	            toastr["error"](j.responseText, "Błąd");
-	        }
-	    });
-
-	    $("#btnok").click(function() {
-	        if (!empty) {
-	            okPressed();
-	        }
-	    });
-
-	    $('input').keyup(function(e) {
-	        if (e.which == 13) {
-	            return true;
-	        }
-	        $('input').each(function() {
-	            if ($(this).val() == '') {
-	                empty = true;
-	            } else {
-	                empty = false;
-	            }
-	        });
-
-	        if (empty) {
-	            $('#btnok').attr('disabled', 'disabled');
-	        } else {
-	            $('#btnok').removeAttr('disabled');
-	        }
-	    });
-
-	    $('input').keypress(function(e) {
-	        if (e.which == 13) {
-	            $('#btnok').click();
-	            return false;
-	        }
-	    });
-	});
-	</script>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+	<script src="./bootstrap-table-editable.js"></script>
+	
+	<!-- <script src="./jsencrypt.js"></script> -->
+	<script src="./ajaxq.js"></script>
+	<script src="./script.js"></script>
 </head>
 <body>
 <div id="newbackground" class="hidden"></div>
@@ -165,10 +37,20 @@
 	</div>
 	<h4 id="text" class="hidden">DUPA</h4>
 	<div class="tablecontainer hidden">
-		<table id="tabela_hasua" 
-			data-align="center"
-			data-valign="middle"
-			data-halign="center">
+			<table id="tabela_hasua"
+			data-toggle="table"
+			data-pagination="true"
+			data-search="true"
+			data-advanced-search="true"
+			data-id-table="tabela_hasua">
+			<thead>
+			<tr>
+				<th data-field="login" data-sortable="true" data-editable="true">Login</th>
+				<th data-field="password" data-sortable="true" data-editable="true">Hasuo</th>
+				<th data-field="editdate" data-sortable="true">Zedytowano</th>
+				<th data-field="createdate" data-sortable="true">Dodano</th>
+			</tr>
+			</thead>
 		</table>
 	</div>
 </body>
