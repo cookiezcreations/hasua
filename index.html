@@ -37,21 +37,43 @@
 	</div>
 	<h4 id="text" class="hidden">DUPA</h4>
 	<div class="tablecontainer hidden">
+			<div id="toolbar">
+				<button id="btn_add" class="btn btn-success" data-toggle="modal" data-target="#dialogNowe">test</button>
+			</div>
 			<table id="tabela_hasua"
 			data-toggle="table"
+			data-toolbar="#toolbar"
 			data-pagination="true"
 			data-search="true"
 			data-advanced-search="true"
 			data-id-table="tabela_hasua">
 			<thead>
 			<tr>
+				<th data-field="check" data-checkbox="true"></th>
 				<th data-field="login" data-sortable="true" data-editable="true">Login</th>
 				<th data-field="password" data-sortable="true" data-editable="true">Hasuo</th>
-				<th data-field="editdate" data-sortable="true">Zedytowano</th>
-				<th data-field="createdate" data-sortable="true">Dodano</th>
+				<th data-field="editdate" data-sortable="true" data-searchable="false">Zedytowano</th>
+				<th data-field="createdate" data-sortable="true" data-searchable="false">Dodano</th>
 			</tr>
 			</thead>
 		</table>
 	</div>
+	<div id="dialogNowe" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Olaboga!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Huehuehue.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Owszem</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
