@@ -153,8 +153,8 @@ $(window).ready(function() {
 				token = data.token;
 				var par = this;
 				$.each($('#tabela_hasua').bootstrapTable('getData'), function(ind, value) {
-					value.editdate = "w tej sesji";
 					if(par.custom_id === value.id) {
+						value.editdate = "w tej sesji";
 						$('#tabela_hasua').bootstrapTable('updateRow', {index: ind, row: value});
 						return false;
 					}
