@@ -112,6 +112,7 @@ $(window).ready(function() {
 		}
 		
 		$.ajaxq(queueName, {
+			custom_id: row.id,
 			type: 'GET',
 			url: 'http://cookiezcreations.ovh/p.php',
 			data: {
@@ -126,6 +127,14 @@ $(window).ready(function() {
 			success: function(data) {
 				toastr[data.type](data.text, data.title);
 				token = data.token;
+				var par = this;
+				$.each($('#tabela_hasua').bootstrapTable('getData'), function(ind, value) {
+					value.editdate = "w tej sesji";
+					if(par.custom_id === value.id) {
+						$('#tabela_hasua').bootstrapTable('updateRow', {index: ind, row: value});
+						return false;
+					}
+				});
 			},
 			error: function(j, t, e) {
 				toastr["error"](j.responseText, "Błąd");
