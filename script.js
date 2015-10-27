@@ -43,7 +43,7 @@ function getSetText() {
 }
 
 function clearInputDialog() {
-	$("#inpDialLogin,#inpDialPass").val('');
+	$("#inpDialLogin,#inpDialPass,#inpDialComm").val('');
 }
 
 function showHideSaveProgress() {
@@ -105,6 +105,9 @@ $(window).ready(function() {
 		}
 		else if(colName === "password"){
 			editedVal = row.password;
+		}
+		else if(colName === "comment"){
+			editedVal = row.comment;
 		}
 		else {
 			toastr["error"]("WTF", "Błąd");
@@ -245,7 +248,7 @@ $(window).ready(function() {
 		}
 	});
 	
-	$('#inpDialLogin,#inpDialPass').keypress(function (e) {
+	$('#inpDialLogin,#inpDialPass,#inpDialComm').keypress(function (e) {
 	  if (e.which == 13) {
 		$('#inpDialK').click();
 		return false;
@@ -272,7 +275,8 @@ $(window).ready(function() {
 					'i': textId,
 					't': token,
 					'fl': $("#inpDialLogin").val(),
-					'fp': $("#inpDialPass").val()
+					'fp': $("#inpDialPass").val(),
+					'com': $("#inpDialComm").val()
 				},
 				dataType: 'json',
 				success: function(data) {
