@@ -250,6 +250,7 @@ $(window).ready(function() {
 	
 	$('#dialogNowe').on('shown.bs.modal', function () {
 	  $(this).find('input:text:visible:first').focus();
+	  inpDialClickTarget = null;
 	});
 	
 	$('#dialogNowe').on('hidden.bs.modal', function () {
