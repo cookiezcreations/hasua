@@ -57,6 +57,23 @@ function showHideSaveProgress() {
 	}
 }
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
 function okPressed() { // Od logowania
 	$('#btnok,#p_input').attr('disabled', 'disabled');
 
@@ -96,6 +113,10 @@ function okPressed() { // Od logowania
 
 $(window).ready(function() {
 	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim').removeClass('hidden').hide();
+	
+	  if(getCookie("dupa") === "dupa") {
+		  $("body").toggleClass("hidden");
+	  }
 
 	$('#tabela_hasua').on('editable-save.bs.table', function(e, colName, row, oldVal) {
 		var editedVal = '';
@@ -291,6 +312,20 @@ $(window).ready(function() {
 		}
 		
 		clearInputDialog();
+	});
+	
+	$("body").keydown(function(e) {
+	  if(e.keyCode == 17) {
+		  $("body").toggleClass("hidden");
+		  if(getCookie("dupa") === "dupa") {
+			  setCookie("dupa", "", 0);
+		  }
+		  else {
+			  setCookie("dupa", "dupa", 300);
+			  window.open('http://google.pl');
+				window.location.href="http://google.com";
+		  }
+	  }
 	});
 	
 	$.fn.editable.defaults.emptytext = "Puste";
