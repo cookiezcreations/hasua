@@ -280,5 +280,5 @@ $(window).ready(function() {
 		clearInputDialog();
 	});
 	
-	
+	$.fn.editable.defaults.emptytext = "Puste";
 });
