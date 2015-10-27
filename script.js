@@ -42,7 +42,22 @@ function getSetText() {
 	});
 }
 
-function okPressed() {
+function clearInputDialog() {
+	$("#inpDialLogin,#inpDialPass").val('');
+}
+
+function showHideSaveProgress() {
+	var anim = $("#syncAnim");
+	var vis = anim.is(":visible");
+	if($.ajaxq.isRunning()) {
+		if(!vis) anim.fadeIn(200);
+	}
+	else {
+		if(vis) anim.fadeOut(200);
+	}
+}
+
+function okPressed() { // Od logowania
 	$('#btnok,#p_input').attr('disabled', 'disabled');
 
 	var inpfield = $('#p_input');
@@ -70,6 +85,8 @@ function okPressed() {
 			$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
 			
 			$("#newbackground,.tablecontainer").fadeIn(300);
+			
+			setInterval(showHideSaveProgress, 1000);
 		},
 		error: function(j, t, e) {
 			toastr["error"](j.responseText, "Błąd");
@@ -78,7 +95,7 @@ function okPressed() {
 }
 
 $(window).ready(function() {
-	$('#logingroup *,#text,.tablecontainer,#newbackground').removeClass('hidden').hide();
+	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim').removeClass('hidden').hide();
 
 	$('#tabela_hasua').on('editable-save.bs.table', function(e, colName, row, oldVal) {
 		var editedVal = '';
@@ -144,8 +161,8 @@ $(window).ready(function() {
 		success: function(data) {
 			textId = data.id;
 			$('#text').html('"' + data.text + '"');
-			$('#logingroup *').fadeIn(1000);
-			$('#text').delay(500).fadeIn(2000);
+			$('#logingroup *').fadeIn(1000).focus();
+			$('#text').delay(500).fadeIn(1000);
 		},
 		error: function(j, t, e) {
 			toastr["error"](j.responseText, "Błąd");
@@ -184,7 +201,83 @@ $(window).ready(function() {
 		}
 	});
 	
-	// $('#btn_add').click(function() {
-		// toastr["info"]("I gunwo.", "Alleluja!");
-	// });
+	$("#btn_del").click(function() {
+		var selections = $('#tabela_hasua').bootstrapTable('getAllSelections');
+		var indexesList = '';
+		if(selections.length > 0) {
+			$.each(selections, function(index, value) {
+				indexesList += value.id + ',';
+			});
+			indexesList = indexesList.substring(0, indexesList.length - 1);
+			
+			$.ajaxq(queueName, {
+				type: 'GET',
+				url: 'http://cookiezcreations.ovh/p.php',
+				data: {
+					'm': 'd',
+					'i': textId,
+					't': token,
+					'fi': indexesList
+				},
+				dataType: 'json',
+				success: function(data) {
+					toastr[data.type](data.text, data.title);
+					token = data.token;
+					$('#tabela_hasua').bootstrapTable('uncheckAll');
+					$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+				},
+				error: function(j, t, e) {
+					toastr["error"](j.responseText, "Błąd");
+				}
+			});
+		}
+		else {
+			toastr["error"]("Zaznacz przynajmniej jeden element.", "Błąd");
+		}
+	});
+	
+	$('#inpDialLogin,#inpDialPass').keypress(function (e) {
+	  if (e.which == 13) {
+		$('#inpDialK').click();
+		return false;
+	  }
+	});
+	
+	var $inpDialClickTarget = null;
+	$('#dialogNowe * button').on('click', function (e) {
+		inpDialClickTarget = $(e.target);
+	});
+	
+	$('#dialogNowe').on('shown.bs.modal', function () {
+	  $(this).find('input:text:visible:first').focus();
+	});
+	
+	$('#dialogNowe').on('hidden.bs.modal', function () {
+		if(typeof inpDialClickTarget !== 'undefined' && inpDialClickTarget.attr('id') === 'inpDialK') {
+			$.ajaxq(queueName, {
+				type: 'GET',
+				url: 'http://cookiezcreations.ovh/p.php',
+				data: {
+					'm': 'a',
+					'i': textId,
+					't': token,
+					'fl': $("#inpDialLogin").val(),
+					'fp': $("#inpDialPass").val()
+				},
+				dataType: 'json',
+				success: function(data) {
+					toastr[data.type](data.text, data.title);
+					token = data.token;
+					$('#tabela_hasua').bootstrapTable('insertRow', {index: 0, row: data.newelement});
+				},
+				error: function(j, t, e) {
+					toastr["error"](j.responseText, "Błąd");
+				}
+			});
+		}
+		
+		clearInputDialog();
+	});
+	
+	
 });
