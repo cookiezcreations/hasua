@@ -12,8 +12,9 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 	
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/bootstrap-table.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/locale/bootstrap-table-pl-PL.min.js"></script>
 	
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -37,17 +38,18 @@
 	</div>
 	<h4 id="text" class="hidden">DUPA</h4>
 	<div class="tablecontainer hidden">
-			<div id="toolbar">
-				<button id="btn_add" class="btn btn-success" data-toggle="modal" data-target="#dialogNowe">test</button>
-			</div>
-			<table id="tabela_hasua"
-			data-toggle="table"
-			data-toolbar="#toolbar"
-			data-pagination="true"
-			data-search="true"
-			data-advanced-search="true"
-			data-id-table="tabela_hasua">
-			<thead>
+		<div id="toolbar">
+			<button id="btn_del" class="btn btn-danger">-</button>
+			<button id="btn_add" class="btn btn-success" data-toggle="modal" data-target="#dialogNowe">+</button>
+		</div>
+		<table id="tabela_hasua"
+		data-toggle="table"
+		data-toolbar="#toolbar"
+		data-pagination="true"
+		data-search="true"
+		data-advanced-search="true"
+		data-id-table="tabela_hasua">
+		<thead>
 			<tr>
 				<th data-field="check" data-checkbox="true"></th>
 				<th data-field="login" data-sortable="true" data-editable="true">Login</th>
@@ -55,21 +57,31 @@
 				<th data-field="editdate" data-sortable="true" data-searchable="false">Zedytowano</th>
 				<th data-field="createdate" data-sortable="true" data-searchable="false">Dodano</th>
 			</tr>
-			</thead>
+		</thead>
 		</table>
 	</div>
+	<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate hidden" id="syncAnim"></span>
 	<div id="dialogNowe" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Olaboga!</h4>
+        <h4 class="modal-title">Dodaj do tabeli</h4>
       </div>
       <div class="modal-body">
-        <p>Huehuehue.</p>
+        <p>Podaje dane, które mają zostać dodane do tabeli.</p>
+			<div class="form-group">
+			  <label for="inpDialLogin">Login:</label>
+			  <input type="text" class="form-control" id="inpDialLogin">
+			</div>
+			<div class="form-group">
+			  <label for="inpDialPass">Hasło:</label>
+			  <input type="text" class="form-control" id="inpDialPass">
+			</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Owszem</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal" id="inpDialAnaluj">Analuj</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal" id="inpDialK">OK</button>
       </div>
     </div>
 
