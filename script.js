@@ -269,6 +269,28 @@ $(window).ready(function() {
 		}
 	});
 	
+	$("#btn_ref").click(function() {
+			$.ajaxq(queueName, {
+				type: 'GET',
+				url: 'http://cookiezcreations.ovh/p.php',
+				data: {
+					'm': 'r',
+					'i': textId,
+					't': token
+				},
+				dataType: 'json',
+				success: function(data) {
+					toastr[data.type](data.text, data.title);
+					token = data.token;
+					$('#tabela_hasua').bootstrapTable('uncheckAll');
+					$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+				},
+				error: function(j, t, e) {
+					toastr["error"](j.responseText, "Błąd");
+				}
+			});
+	});
+	
 	$('#inpDialLogin,#inpDialPass,#inpDialComm').keypress(function (e) {
 	  if (e.which == 13) {
 		$('#inpDialK').click();
