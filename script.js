@@ -228,7 +228,7 @@ $(window).ready(function() {
 	});
 
 	$('#p_input').keypress(function(e) {
-		if (e.which == 13) {
+		if (e.which === 13) {
 			$('#btnok').click();
 			return false;
 		}
@@ -315,7 +315,7 @@ $(window).ready(function() {
 	});
 	
 	$("body").keydown(function(e) {
-	  if(e.keyCode == 17) {
+	  if(e.keyCode == 35) {
 		  $("body").toggleClass("hidden");
 		  if(getCookie("dupa") === "dupa") {
 			  setCookie("dupa", "", 0);
