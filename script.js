@@ -91,7 +91,7 @@ function okPressed() { // Od logowania
 		},
 		dataType: 'json',
 		success: function(data) {
-			if (data.type != 'success') {
+			if (data.type !== 'success') {
 				toastr[data.type]("", data.text);
 				getSetText();
 				return;
@@ -151,14 +151,20 @@ $(window).ready(function() {
 			success: function(data) {
 				toastr[data.type](data.text, data.title);
 				token = data.token;
-				var par = this;
-				$.each($('#tabela_hasua').bootstrapTable('getData'), function(ind, value) {
-					if(par.custom_id === value.id) {
-						value.editdate = "w tej sesji";
-						$('#tabela_hasua').bootstrapTable('updateRow', {index: ind, row: value});
-						return false;
-					}
-				});
+				if(data.type === "success") {
+					var par = this;
+					$.each($('#tabela_hasua').bootstrapTable('getData'), function(ind, value) {
+						if(par.custom_id === value.id) {
+							value.editdate = "w tej sesji";
+							$('#tabela_hasua').bootstrapTable('updateRow', {index: ind, row: value});
+							return false;
+						}
+					});
+				}
+				else {
+					$("#newbackground,.tablecontainer").fadeOut(300);
+					getSetText();
+				}
 			},
 			error: function(j, t, e) {
 				toastr["error"](j.responseText, "Błąd");
@@ -256,8 +262,14 @@ $(window).ready(function() {
 				success: function(data) {
 					toastr[data.type](data.text, data.title);
 					token = data.token;
-					$('#tabela_hasua').bootstrapTable('uncheckAll');
-					$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+					if(data.type === "success") {
+						$('#tabela_hasua').bootstrapTable('uncheckAll');
+						$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+					}
+					else {
+						$("#newbackground,.tablecontainer").fadeOut(300);
+						getSetText();
+					}
 				},
 				error: function(j, t, e) {
 					toastr["error"](j.responseText, "Błąd");
@@ -282,8 +294,14 @@ $(window).ready(function() {
 				success: function(data) {
 					toastr[data.type](data.text, data.title);
 					token = data.token;
-					$('#tabela_hasua').bootstrapTable('uncheckAll');
-					$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+					if(data.type === "success") {
+						$('#tabela_hasua').bootstrapTable('uncheckAll');
+						$('#tabela_hasua').bootstrapTable('load', JSON.parse(data.table));
+					}
+					else {
+						$("#newbackground,.tablecontainer").fadeOut(300);
+						getSetText();
+					}
 				},
 				error: function(j, t, e) {
 					toastr["error"](j.responseText, "Błąd");
@@ -325,7 +343,13 @@ $(window).ready(function() {
 				success: function(data) {
 					toastr[data.type](data.text, data.title);
 					token = data.token;
-					$('#tabela_hasua').bootstrapTable('insertRow', {index: 0, row: data.newelement});
+					if(data.type === "success") {
+						$('#tabela_hasua').bootstrapTable('insertRow', {index: 0, row: data.newelement});
+					}
+					else {
+						$("#newbackground,.tablecontainer").fadeOut(300);
+						getSetText();
+					}
 				},
 				error: function(j, t, e) {
 					toastr["error"](j.responseText, "Błąd");
