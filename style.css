@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,300&subset=latin,latin-ext);
 
-@media only screen and (max-width:632px) {
+@media only screen and (max-width:700px) {
 	* {
 		font-size: 20px !important;
 	}
@@ -14,7 +14,16 @@
 	#logingroup {
 		width: 80% !important;
 	}
-}
+	#text {
+		top: 7% !important;
+	}
+	.search {
+		width: 100%;
+	}
+	.search input {
+		height: 100%;
+	}
+} 
 
 html,body {
 	margin: 0;
@@ -44,7 +53,7 @@ html,body {
 }
 
 #text {
-	color: #555555;
+	color: #353535;
 	position: absolute;
 	top: 25%;
     text-align: center;
