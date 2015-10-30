@@ -215,7 +215,7 @@ $(window).ready(function() {
 	});
 
 	$('#p_input').keyup(function(e) {
-		if (e.which == 13) {
+		if (e.which === 13) { 
 			return true;
 		}
 		$('#p_input').each(function() {
@@ -310,7 +310,7 @@ $(window).ready(function() {
 	});
 	
 	$('#inpDialLogin,#inpDialPass,#inpDialComm').keypress(function (e) {
-	  if (e.which == 13) {
+	  if (e.which === 13) {
 		$('#inpDialK').click();
 		return false;
 	  }
@@ -360,8 +360,8 @@ $(window).ready(function() {
 		clearInputDialog();
 	});
 	
-	$("body").keydown(function(e) {
-	  if(e.keyCode == 35) {
+	$("body").keypress(function(e) {
+	  if(e.which === 35) {
 		  $("body").toggleClass("hidden");
 		  if(getCookie("dupa") === "dupa") {
 			  setCookie("dupa", "", 0);
