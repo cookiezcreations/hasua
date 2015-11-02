@@ -8,6 +8,11 @@
     <title>.</title>
 
     <link rel="stylesheet" href="./style.css">
+	
+	<script type="text/javascript">
+		if ((window.location.href.lastIndexOf("ovh") > -1) && (window.location.protocol != "https:"))
+			window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+	</script>
 
     <script src="./libs/jquery/jquery.min.js"></script>
 
