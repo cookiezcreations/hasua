@@ -9,7 +9,7 @@
 	
 	<script src="./libs/platform/platform.js"></script>
 	<script type="text/javascript">
-		if ((window.location.href.lastIndexOf("ovh") > -1) && (platform.os.lastIndexOf("Windows XP") == -1) && (window.location.protocol != "https:"))
+		if ((window.location.href.lastIndexOf("ovh") > -1) && (platform.os.family.lastIndexOf("Windows XP") == -1) && (window.location.protocol != "https:"))
 			window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 	</script>
 	
