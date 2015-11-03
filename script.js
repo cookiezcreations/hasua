@@ -114,6 +114,10 @@ function okPressed() { // Od logowania
 $(window).ready(function() {
 	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim').removeClass('hidden').hide();
 	
+	if(window.location.protocol == "https:") {
+		$("#sslWarning").hide();
+	}
+	
 	  if(getCookie("dupa") === "dupa") {
 		  $("body").toggleClass("hidden");
 	  }
