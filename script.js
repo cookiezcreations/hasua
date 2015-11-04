@@ -313,6 +313,14 @@ $(window).ready(function() {
 			});
 	});
 	
+	$("#btn_log_out").click(function() {
+		token = '';
+		textId = '';
+		$('#tabela_hasua').bootstrapTable('removeAll');
+		$("#newbackground,.tablecontainer").fadeOut(300);
+		getSetText();
+	});
+	
 	$('#inpDialLogin,#inpDialPass,#inpDialComm').keypress(function (e) {
 	  if (e.which === 13) {
 		$('#inpDialK').click();
