@@ -131,7 +131,7 @@ function logOutFromServer() {
 }
 
 $(window).ready(function() {
-	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim').removeClass('hidden').hide();
+	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim,#bottomText').removeClass('hidden').hide();
 	
 	if(window.location.protocol == "https:") {
 		$("#sslWarning").hide();
@@ -213,6 +213,7 @@ $(window).ready(function() {
 		"hideMethod": "fadeOut"
 	}
 
+	// TEXT
 	$.ajax({
 		type: 'GET',
 		url: '//cookiezcreations.ovh/p.php',
@@ -225,6 +226,26 @@ $(window).ready(function() {
 			$('#text').html('"' + data.text + '"');
 			$('#logingroup *').fadeIn(1000).focus();
 			$('#text').delay(500).fadeIn(1000);
+		},
+		error: function(j, t, e) {
+			toastr["error"](j.responseText, "Błąd");
+		}
+	});
+	
+	// STATS
+	$.ajax({
+		type: 'GET',
+		url: '//cookiezcreations.ovh/p.php',
+		data: {
+			'm': 'staty'
+		},
+		dataType: 'json',
+		success: function(data) {
+			$(".bottomTextApiVer").html(data.API_VER);
+			$(".bottomTextLastSuccessfulLogIn").html(data.lastoklogin);
+			$(".bottomTextLastUnsuccessfulLogIn").html(data.lastbadlogin);
+			$(".bottomTextLastChange").html(data.lastmodify);
+			$("#bottomText").fadeIn(300);
 		},
 		error: function(j, t, e) {
 			toastr["error"](j.responseText, "Błąd");

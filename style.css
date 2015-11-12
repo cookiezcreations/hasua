@@ -27,6 +27,12 @@
 		font-size: 17px !important;
 		width: 96% !important;
 	}
+	#sslWarning {
+		bottom: 25% !important;
+	}
+	#bottomText {
+		display: none !important;
+	}
 }
 
 html,body {
@@ -75,7 +81,9 @@ html,body {
 	position: absolute;
     width: 100%;
     bottom: 0;
-    font-size: 18px;
+    font-size: 13px;
+	margin-left: 5px;
+	color: #999999;
 }
 
 .hidden {
