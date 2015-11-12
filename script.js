@@ -111,6 +111,25 @@ function okPressed() { // Od logowania
 	});
 }
 
+function logOutFromServer() {
+	$.ajax({
+		type: 'GET',
+		url: '//cookiezcreations.ovh/p.php',
+		data: {
+			'm': 'lo',
+			'i': textId,
+			't': token
+		},
+		dataType: 'json',
+		success: function(data) {
+			toastr[data.type](data.text, data.title);
+		},
+		error: function(j, t, e) {
+			toastr["error"](j.responseText, "Błąd");
+		}
+	});
+}
+
 $(window).ready(function() {
 	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim').removeClass('hidden').hide();
 	
@@ -314,6 +333,7 @@ $(window).ready(function() {
 	});
 	
 	$("#btn_log_out").click(function() {
+		logOutFromServer();
 		token = '';
 		textId = '';
 		$('#tabela_hasua').bootstrapTable('removeAll');
