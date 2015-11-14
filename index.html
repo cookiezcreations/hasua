@@ -1,102 +1,40 @@
-<!DOCTYPE HTML>
+﻿<!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>.</title>
-	
-	<script src="./libs/platform/platform.js"></script>
-	<script type="text/javascript">
-		if ((window.location.href.lastIndexOf("file") != 0) && (platform.os.family.lastIndexOf("Windows XP") == -1) && (window.location.protocol != "https:"))
-			window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-	</script>
-	
-	<link rel="stylesheet" href="./style.css">
-
-    <script src="./libs/jquery/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/bootstrap/css/bootstrap.min.css">
-    <script src="./libs/bootstrap/bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-table.min.css">
-    <script src="./libs/bootstrap/plugins/bootstrap-table.min.js"></script>
-    <script src="./libs/bootstrap/plugins/bootstrap-table-pl-PL.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-editable.css" />
-    <script src="./libs/bootstrap/plugins/bootstrap-editable.min.js"></script>
-    <script src="./libs/bootstrap/plugins/bootstrap-table-editable.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/toastr.min.css">
-    <script src="./libs/bootstrap/plugins/toastr.min.js"></script>
-
-    <!-- <script src="./jsencrypt.js"></script> -->
-    <script src="./libs/ajaxq/ajaxq.js"></script>
-    <script src="./script.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>Szczęść Boże!</title>
+	<style type="text/css">
+		body{background:#EFEFEF; font-family:Arial, Helvetica, sans-serif; font-size:16px;} .holder{ padding:150px 0 0 0;  width:700px; margin:0 auto;}
+		h1{color:#848484; font-size:35px; margin-top:0; line-height: 35px;} p{color:#505050; margin-top:16px; font-weight:normal} .listHolder{font-weight:normal; text-align:left; color:#505050; margin:22px 0 0 0} .listHolder h2{font-weight:bold; color:#414141; padding:20px 0 0 0; font-size:16px;} ul{ margin:0; padding:0} 
+		
+		li { list-style:inside url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNjdEMzg3MDRFMEZFMTExQjgxRjhCMTRBNDdDRUM2MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyMTJEN0Q3NTdFMzcxMUUxOTk3NThCMUQ5MkU0QUNFRCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMTJEN0Q3NDdFMzcxMUUxOTk3NThCMUQ5MkU0QUNFRCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjFFOTcxN0ZCMkU3RUUxMTE4MEQ1QUE3QjI4MDNGNEM1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2N0QzODcwNEUwRkUxMTFCODFGOEIxNEE0N0NFQzYxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+XFms5gAAAEdJREFUeNpiXLhwIRsDA0MdECcwQMACIG5iARKNQFzBgADVQMzMBCSSGTBBMhMDDgCSmItFfAHIjnogBjkgCiq4DIhrAAIMAFSFCXSlFlZTAAAAAElFTkSuQmCC'); padding:0; margin:8px 0} a{color:#2BA4D1; text-decoration:none} a:hover{color:#2BA4D1; text-decoration:underline} .leftContainer{float:left; width:335px; margin-top:20px} .rightContainer{float:left; width:365px; text-align:left; margin-top:80px}
+		
+		.clear {clear:both;}
+		
+		@media screen and (max-width: 700px) {
+				 .holder { width: 100%; padding-top:10px; }
+				 .leftContainer {display:none;}
+				 .leftContainer img { display:none;}
+				 .rightContainer { width:100%; margin:0; text-align:center; }
+				 .rightContainer .listHolder {margin:0; text-align:center;}
+				 .rightContainer ul { padding:0; margin:0 0 80px 0; list-style: inside; }
+				 p {margin:0;}
+				 h1, h2 {margin:0 0 10px 0;}
+			}
+	</style>
 </head>
-
 <body>
-    <div id="newbackground" class="hidden"></div>
-    <div id="logincontainer">
-        <div id="logingroup" class="form-group">
-            <input type="password" autofocus="autofocus" class="form-control active hidden" id="p_input">
-            <button type="button" class="btn center-block hidden" id="btnok" disabled="disabled">OK</button>
-        </div>
-    </div>
-    <h4 id="text" class="hidden">DUPA</h4>
-	<div id="sslWarning" class="text-danger text-center">Twoje połączenie nie jest szyfrowane.</div>
-	<div id="bottomText" class="hidden text-center">Wersja strony: 1.0.1. Wersja API: <span class="bottomTextApiVer">ERROR</span>. Ostatnie udane logowanie: <span class="bottomTextLastSuccessfulLogIn">ERROR</span>. Ostatnie nieudane logowanie: <span class="bottomTextLastUnsuccessfulLogIn">ERROR</span>. Ostatnia zmiana w bazie danych: <span class="bottomTextLastChange">ERROR</span>.</div>
-    <div class="tablecontainer hidden">
-        <div id="toolbar">
-            <button id="btn_del" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-			<button id="btn_add" class="btn btn-success" data-toggle="modal" data-target="#dialogNowe"><span class="glyphicon glyphicon-plus"></span></button>
-			<button id="btn_ref" class="btn btn-info"><span class="glyphicon glyphicon-refresh"></span></button>
-			<button id="btn_log_out" class="btn btn-primary"><span class="glyphicon glyphicon-log-out"></span></button>
-        </div>
-        <table id="tabela_hasua" data-toggle="table" data-toolbar="#toolbar" data-search="true" data-pagination="true" data-page-size="15" data-page-list="[15, 25, All]" data-advanced-search="true" data-search-time-out="250" data-show-toggle="true" data-show-columns="true" data-show-pagination-switch="true" data-minimum-count-columns="1" data-id-table="tabela_hasua">
-            <thead>
-                <tr>
-                    <th data-field="check" data-checkbox="true"></th>
-                    <th data-field="login" data-sortable="true" data-editable="true">Login</th>
-                    <th data-field="password" data-sortable="true" data-editable="true">Hasuo</th>
-                    <th data-field="comment" data-sortable="true" data-editable="true">Komentarz</th>
-                    <th data-field="editdate" data-sortable="true" data-searchable="false">Zedytowano</th>
-                    <th data-field="createdate" data-sortable="true" data-searchable="false">Dodano</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate hidden" id="syncAnim"></span>
-    <div id="dialogNowe" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Dodaj do tabeli</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Podaje dane, które mają zostać dodane do tabeli.</p>
-                    <div class="form-group">
-                        <label for="inpDialLogin">Login:</label>
-                        <input type="text" class="form-control" id="inpDialLogin">
-                    </div>
-                    <div class="form-group">
-                        <label for="inpDialPass">Hasło:</label>
-                        <input type="text" class="form-control" id="inpDialPass">
-                    </div>
-                    <div class="form-group">
-                        <label for="inpDialPass">Dodatkowy komentarz:</label>
-                        <input type="text" class="form-control" id="inpDialComm">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="inpDialAnaluj">Analuj</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="inpDialK">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="holder">
+	<div class="leftContainer">
+		<img width="277" height="276"  alt="alert" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARUAAAEUCAYAAAAFsqJHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpGNjdEMzg3MDRFMEZFMTExQjgxRjhCMTRBNDdDRUM2MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyMTJEN0Q3MTdFMzcxMUUxOTk3NThCMUQ5MkU0QUNFRCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyMTJEN0Q3MDdFMzcxMUUxOTk3NThCMUQ5MkU0QUNFRCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjFFOTcxN0ZCMkU3RUUxMTE4MEQ1QUE3QjI4MDNGNEM1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkY2N0QzODcwNEUwRkUxMTFCODFGOEIxNEE0N0NFQzYxIi8+IDwvcmRmOkRlc2NyaXB0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" />
+	</div>
+	<div class="rightContainer">
+		<h1>Trwa konserwacja.</h1>
+		<p>Szykują się ciekawe zmiany. <br> Przynajmniej dla mnie.</p>
+		<p>Coming soon...</p>
+	</div>
+	<div class="clear"></div>
+</div>
 </body>
-
 </html>

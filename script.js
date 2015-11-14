@@ -23,7 +23,7 @@ function b64tourl(text) {
 function getSetText() {
 	$.ajax({
 		type: 'GET',
-		url: '//cookiezcreations.ovh/p.php',
+		url: '/p.php',
 		data: {
 			'm': 'text'
 		},
@@ -83,7 +83,7 @@ function okPressed() { // Od logowania
 
 	$.ajax({
 		type: 'GET',
-		url: '//cookiezcreations.ovh/p.php',
+		url: '/p.php',
 		data: {
 			'm': 'p',
 			'i': textId,
@@ -114,7 +114,7 @@ function okPressed() { // Od logowania
 function logOutFromServer() {
 	$.ajax({
 		type: 'GET',
-		url: '//cookiezcreations.ovh/p.php',
+		url: '/p.php',
 		data: {
 			'm': 'lo',
 			'i': textId,
@@ -161,7 +161,7 @@ $(window).ready(function() {
 		$.ajaxq(queueName, {
 			custom_id: row.id,
 			type: 'GET',
-			url: '//cookiezcreations.ovh/p.php',
+			url: '/p.php',
 			data: {
 				'm': 'e',
 				'i': textId,
@@ -216,7 +216,7 @@ $(window).ready(function() {
 	// TEXT
 	$.ajax({
 		type: 'GET',
-		url: '//cookiezcreations.ovh/p.php',
+		url: '/p.php',
 		data: {
 			'm': 'text'
 		},
@@ -235,7 +235,7 @@ $(window).ready(function() {
 	// STATS
 	$.ajax({
 		type: 'GET',
-		url: '//cookiezcreations.ovh/p.php',
+		url: '/p.php',
 		data: {
 			'm': 'staty'
 		},
@@ -295,7 +295,7 @@ $(window).ready(function() {
 			
 			$.ajaxq(queueName, {
 				type: 'GET',
-				url: '//cookiezcreations.ovh/p.php',
+				url: '/p.php',
 				data: {
 					'm': 'd',
 					'i': textId,
@@ -328,7 +328,7 @@ $(window).ready(function() {
 	$("#btn_ref").click(function() {
 			$.ajaxq(queueName, {
 				type: 'GET',
-				url: '//cookiezcreations.ovh/p.php',
+				url: '/p.php',
 				data: {
 					'm': 'r',
 					'i': textId,
@@ -383,7 +383,7 @@ $(window).ready(function() {
 		if(typeof inpDialClickTarget !== 'undefined' && inpDialClickTarget.attr('id') === 'inpDialK') {
 			$.ajaxq(queueName, {
 				type: 'GET',
-				url: '//cookiezcreations.ovh/p.php',
+				url: '/p.php',
 				data: {
 					'm': 'a',
 					'i': textId,
