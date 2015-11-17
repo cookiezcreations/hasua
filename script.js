@@ -34,6 +34,7 @@ function getSetText() {
 				$('#text').html('"' + data.text + '"');
 				$('#text').fadeIn(200);
 				$('#p_input').removeAttr('disabled');
+				$('#p_input').focus();
 			});
 		},
 		error: function(j, t, e) {
