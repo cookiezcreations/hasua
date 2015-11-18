@@ -132,10 +132,14 @@ function logOutFromServer() {
 }
 
 $(window).ready(function() {
-	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim,#bottomText').removeClass('hidden').hide();
+	$('#logingroup *,#text,.tablecontainer,#newbackground,#syncAnim,#bottomText,#sslWarning').removeClass('hidden').hide();
 	
-	if(window.location.protocol == "https:") {
-		$("#sslWarning").hide();
+	$('html,body').css({
+		overflowY: 'auto'
+	});
+	
+	if(window.location.protocol == "http:") {
+		$("#sslWarning").show();
 	}
 	
 	  if(getCookie("dupa") === "dupa") {
@@ -225,8 +229,10 @@ $(window).ready(function() {
 		success: function(data) {
 			textId = data.id;
 			$('#text').html('"' + data.text + '"');
-			$('#logingroup *').fadeIn(1000).focus();
-			$('#text').delay(500).fadeIn(1000);
+			$('#pageLoadSpinner').fadeOut(200, function() {
+				$('#logingroup *').fadeIn(700).focus();
+				$('#text').delay(200).fadeIn(700);
+			});
 		},
 		error: function(j, t, e) {
 			toastr["error"](j.responseText, "Błąd");

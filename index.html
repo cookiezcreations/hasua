@@ -14,31 +14,18 @@
 	</script>
 	
 	<link rel="stylesheet" href="./style.css">
-
-    <script src="./libs/jquery/jquery.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/bootstrap/css/bootstrap.min.css">
-    <script src="./libs/bootstrap/bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-table.min.css">
-    <script src="./libs/bootstrap/plugins/bootstrap-table.min.js"></script>
-    <script src="./libs/bootstrap/plugins/bootstrap-table-pl-PL.min.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-editable.css" />
-    <script src="./libs/bootstrap/plugins/bootstrap-editable.min.js"></script>
-    <script src="./libs/bootstrap/plugins/bootstrap-table-editable.js"></script>
-
-    <link rel="stylesheet" href="./libs/bootstrap/plugins/toastr.min.css">
-    <script src="./libs/bootstrap/plugins/toastr.min.js"></script>
-
+	<link rel="stylesheet" href="./timer.css">
     <!-- <script src="./jsencrypt.js"></script> -->
-    <script src="./libs/ajaxq/ajaxq.js"></script>
-    <script src="./script.js"></script>
 	<link rel="icon" type="image/png" href="./favicon.png">
 </head>
 
 <body>
     <div id="newbackground" class="hidden"></div>
+	
+	<div id="pageLoadSpinner" style="color:#fec54f;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;max-width:100%;max-height:100%;overflow:auto;" class="la-timer la-3x">
+		<div></div>
+	</div>
+	
     <div id="logincontainer">
         <div id="logingroup" class="form-group">
             <input type="password" autofocus="autofocus" class="form-control active hidden" id="p_input">
@@ -46,7 +33,7 @@
         </div>
     </div>
     <h4 id="text" class="hidden">DUPA</h4>
-	<div id="sslWarning" class="text-danger text-center">Twoje połączenie nie jest szyfrowane.</div>
+	<div id="sslWarning" class="text-danger text-center hidden">Twoje połączenie nie jest szyfrowane.</div>
 	<div id="bottomText" class="hidden text-center">Wersja strony: 1.0.2. Wersja API: <span class="bottomTextApiVer">ERROR</span>. Ostatnie udane logowanie: <span class="bottomTextLastSuccessfulLogIn">ERROR</span>. Ostatnie nieudane logowanie: <span class="bottomTextLastUnsuccessfulLogIn">ERROR</span>. Ostatnia zmiana w bazie danych: <span class="bottomTextLastChange">ERROR</span>.</div>
     <div class="tablecontainer hidden">
         <div id="toolbar">
@@ -98,6 +85,21 @@
             </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="./libs/bootstrap/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-table.min.css">
+    <link rel="stylesheet" href="./libs/bootstrap/plugins/bootstrap-editable.css" />
+    <link rel="stylesheet" href="./libs/bootstrap/plugins/toastr.min.css">
+	
+	<script src="./libs/jquery/jquery.min.js"></script>
+	<script src="./libs/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./libs/bootstrap/plugins/bootstrap-table.min.js"></script>
+    <script src="./libs/bootstrap/plugins/bootstrap-table-pl-PL.min.js"></script>
+	<script src="./libs/bootstrap/plugins/bootstrap-editable.min.js"></script>
+    <script src="./libs/bootstrap/plugins/bootstrap-table-editable.js"></script>
+	<script src="./libs/bootstrap/plugins/toastr.min.js"></script>
+	<script src="./libs/ajaxq/ajaxq.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
