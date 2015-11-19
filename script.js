@@ -230,7 +230,7 @@ $(window).ready(function() {
 			textId = data.id;
 			$('#text').html('"' + data.text + '"');
 			$('#pageLoadSpinner').fadeOut(200, function() {
-				$('#logingroup *').fadeIn(700).focus();
+				$('#logingroup *').fadeIn(700).css("display","block").focus();
 				$('#text').delay(200).fadeIn(700);
 			});
 		},
